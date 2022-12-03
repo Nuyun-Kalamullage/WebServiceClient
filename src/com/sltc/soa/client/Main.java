@@ -3,6 +3,12 @@ package com.sltc.soa.client;
 import com.sltc.soa.client.stub.DemoWS;
 import com.sltc.soa.client.stub.DemoWSService;
 
+import java.io.BufferedReader;
+import java.io.Console;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -11,14 +17,14 @@ public class Main {
     private static String CurrentClientName;
 
     public static void main(String[] args ) {
-        clientTerminal();
+        clientTerminal(); //run the function in main method.
     }
 
     private static void clientTerminal() {
 
         DemoWSService demoWSService = new DemoWSService();
-        DemoWS demoWSPort = demoWSService.getDemoWSPort();
-        Scanner sc = new Scanner(System.in);
+        DemoWS demoWSPort = demoWSService.getDemoWSPort(); // get the listening port.
+        Scanner sc = new Scanner(System.in); // Scanner for getting inputs from the user.
         System.out.println("==================================================================");
         System.out.println("===============  Welcome to MID BANK - WEB Server ================");
         System.out.println("=================== AA 1711 - NuYuN Pabasara =====================");
@@ -38,7 +44,7 @@ public class Main {
 
         for (name = sc.nextLine(); !name.toLowerCase().equals("quit"); name = sc.nextLine()) { //Get the unique Name ID from user
             int returnValue = -1;
-            if (name.toLowerCase().equals("create")) {
+            if (name.toLowerCase().equals("create")) { // create a user account for a bank system.
                 System.out.print("First Name : ");
                 Fname = sc.nextLine();
                 System.out.print("Last Name : ");
@@ -55,8 +61,6 @@ public class Main {
                     System.out.print("Enter Valid NIC : ");
                     nic = sc.nextLine();
                 }
-//                System.out.print("Password : ");
-//                password = sc.nextLine().hashCode();
                 password = consoleFunc().hashCode();
                 System.out.print("Enter amount for deposit : ");
                 deposit = readInputInt();
@@ -79,9 +83,7 @@ public class Main {
                 if (key.equals("quit")) {
                     System.out.println("LogOut from Server");
                 }
-            } else {
-//                System.out.print("Enter the Password : ");
-//                hashCode = sc.nextLine().hashCode();
+            } else { // authorise the user via authoriseUser function.
                 hashCode = consoleFunc().hashCode();
                 returnValue = demoWSPort.authoriseUser(name, hashCode);
                 if (returnValue == 1) {
@@ -108,7 +110,7 @@ public class Main {
             }
         }
 
-        while (!menuKey.toLowerCase().equals("quit")) {
+        while (!menuKey.toLowerCase().equals("quit") && !name.toLowerCase().equals("quit")) { // add a loop until user hits quit.
 
             System.out.println("==================================================================");
             System.out.println();
@@ -120,16 +122,15 @@ public class Main {
             System.out.println("Enter the the number do you want to proceed :");
             menuKey = sc.nextLine();
 
-            if (menuKey.toLowerCase().equals("1")) {
+            if (menuKey.toLowerCase().equals("1")) { //get user user details from wsdl file.
                 System.out.println("Account No : " + demoWSPort.getAccountNumber(CurrentClientName));
                 System.out.println("Balance : " + demoWSPort.getBalance(CurrentClientName));
 
 
-            } else if (menuKey.toLowerCase().equals("2")) {
+            } else if (menuKey.toLowerCase().equals("2")) { //get user input for do a deposit function.
 
                 System.out.print("Enter amount for deposit : ");
                 Float amount = readInputInt();
-//                System.out.print("Enter your Password : ");
                 if (demoWSPort.authoriseUser(CurrentClientName, consoleFunc().hashCode()) == 1) {
                     demoWSPort.deposit(amount, CurrentClientName);
                     System.out.println("Deposit Successful:)");
@@ -138,12 +139,11 @@ public class Main {
                     System.out.println("Password Incorrect. Please Try again:(");
                 }
 
-            } else if (menuKey.toLowerCase(Locale.ROOT).equals("3")) {
+            } else if (menuKey.toLowerCase(Locale.ROOT).equals("3")) { //get user input for do a withdraw function.
 
                 int response = 0;
                 System.out.print("Enter amount for withdraw : ");
                 Float amount = readInputInt();
-//                System.out.print("Enter your Password : ");
                 if (demoWSPort.authoriseUser(CurrentClientName, consoleFunc().hashCode()) == 1) {
                     response = demoWSPort.withdraw(amount, CurrentClientName);
                     ;
@@ -157,7 +157,7 @@ public class Main {
                     System.out.println("Password Incorrect. Please Try again:(");
                 }
 
-            } else if (menuKey.toLowerCase(Locale.ROOT).equals("4")) {
+            } else if (menuKey.toLowerCase(Locale.ROOT).equals("4")) { //get user input for do a transfer function.
 
                 int response = 0;
                 System.out.print("Enter amount for Transfer : ");
@@ -169,7 +169,6 @@ public class Main {
                     System.out.print("Enter Valid User Account : ");
                     userAccount = sc.nextLine();
                 }
-//                System.out.print("Enter your Password : ");
                 if (demoWSPort.authoriseUser(CurrentClientName, consoleFunc().hashCode()) == 1) {
                     response = demoWSPort.transfer(CurrentClientName, amount, userAccount);
                     if (response == 1) {
@@ -184,20 +183,14 @@ public class Main {
             }
         }
     }
-    public static String consoleFunc() {
+    public static String consoleFunc() { // mask the password with asterisks for reliability.
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter your password: ");
-        EraserThread et = new EraserThread();
-        Thread mask = new Thread(et);
-        mask.start();
-        String pass = scan.nextLine();
-        System.out.print("\b");
-        mask.stop();
+        String pass = scan.next();
+        return pass;// I tried to mask the password using tread(EraserTread class) but I could make it. So, I upload the code without masking password.
 
-        return pass;
     }
-
-    private static float readInputInt() {
+    private static float readInputInt() { // get the float input without any errors.
         float inputInt = 0;
         boolean numberFound = false;
         Scanner scan = new Scanner( System.in );

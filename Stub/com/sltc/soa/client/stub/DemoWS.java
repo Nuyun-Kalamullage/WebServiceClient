@@ -47,6 +47,105 @@ public interface DemoWS {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "withdraw", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.Withdraw")
+    @ResponseWrapper(localName = "withdrawResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.WithdrawResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/withdrawRequest", output = "http://soa.sltc.com/DemoWS/withdrawResponse")
+    public int withdraw(
+        @WebParam(name = "arg0", targetNamespace = "")
+        float arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "authoriseUser", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.AuthoriseUser")
+    @ResponseWrapper(localName = "authoriseUserResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.AuthoriseUserResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/authoriseUserRequest", output = "http://soa.sltc.com/DemoWS/authoriseUserResponse")
+    public int authoriseUser(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "deposit", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.Deposit")
+    @ResponseWrapper(localName = "depositResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.DepositResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/depositRequest", output = "http://soa.sltc.com/DemoWS/depositResponse")
+    public int deposit(
+        @WebParam(name = "arg0", targetNamespace = "")
+        float arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAccountNumber", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetAccountNumber")
+    @ResponseWrapper(localName = "getAccountNumberResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetAccountNumberResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/getAccountNumberRequest", output = "http://soa.sltc.com/DemoWS/getAccountNumberResponse")
+    public String getAccountNumber(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "checkUserName", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckUserName")
+    @ResponseWrapper(localName = "checkUserNameResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckUserNameResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/checkUserNameRequest", output = "http://soa.sltc.com/DemoWS/checkUserNameResponse")
+    public boolean checkUserName(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns float
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBalance", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetBalance")
+    @ResponseWrapper(localName = "getBalanceResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetBalanceResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/getBalanceRequest", output = "http://soa.sltc.com/DemoWS/getBalanceResponse")
+    public float getBalance(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns boolean
@@ -64,14 +163,14 @@ public interface DemoWS {
      * 
      * @param arg0
      * @return
-     *     returns java.lang.String
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getAccountNumber", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetAccountNumber")
-    @ResponseWrapper(localName = "getAccountNumberResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetAccountNumberResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/getAccountNumberRequest", output = "http://soa.sltc.com/DemoWS/getAccountNumberResponse")
-    public String getAccountNumber(
+    @RequestWrapper(localName = "checkNIC", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckNIC")
+    @ResponseWrapper(localName = "checkNICResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckNICResponse")
+    @Action(input = "http://soa.sltc.com/DemoWS/checkNICRequest", output = "http://soa.sltc.com/DemoWS/checkNICResponse")
+    public boolean checkNIC(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
@@ -104,104 +203,5 @@ public interface DemoWS {
         int arg4,
         @WebParam(name = "arg5", targetNamespace = "")
         float arg5);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "withdraw", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.Withdraw")
-    @ResponseWrapper(localName = "withdrawResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.WithdrawResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/withdrawRequest", output = "http://soa.sltc.com/DemoWS/withdrawResponse")
-    public int withdraw(
-        @WebParam(name = "arg0", targetNamespace = "")
-        float arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkNIC", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckNIC")
-    @ResponseWrapper(localName = "checkNICResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckNICResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/checkNICRequest", output = "http://soa.sltc.com/DemoWS/checkNICResponse")
-    public boolean checkNIC(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "deposit", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.Deposit")
-    @ResponseWrapper(localName = "depositResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.DepositResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/depositRequest", output = "http://soa.sltc.com/DemoWS/depositResponse")
-    public int deposit(
-        @WebParam(name = "arg0", targetNamespace = "")
-        float arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns float
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBalance", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetBalance")
-    @ResponseWrapper(localName = "getBalanceResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.GetBalanceResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/getBalanceRequest", output = "http://soa.sltc.com/DemoWS/getBalanceResponse")
-    public float getBalance(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "authoriseUser", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.AuthoriseUser")
-    @ResponseWrapper(localName = "authoriseUserResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.AuthoriseUserResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/authoriseUserRequest", output = "http://soa.sltc.com/DemoWS/authoriseUserResponse")
-    public int authoriseUser(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "checkUserName", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckUserName")
-    @ResponseWrapper(localName = "checkUserNameResponse", targetNamespace = "http://soa.sltc.com/", className = "com.sltc.soa.client.stub.CheckUserNameResponse")
-    @Action(input = "http://soa.sltc.com/DemoWS/checkUserNameRequest", output = "http://soa.sltc.com/DemoWS/checkUserNameResponse")
-    public boolean checkUserName(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
 
 }
